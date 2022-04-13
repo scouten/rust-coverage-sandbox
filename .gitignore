@@ -4,3 +4,5 @@ Cargo.lock
 
 *.profdata
 *.profraw
+
+.test-bin-name
