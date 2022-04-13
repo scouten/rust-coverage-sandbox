@@ -2,7 +2,7 @@
 
 rustup component add llvm-tools-preview
 
-cargo install rustfilt
+cargo install grcov rustfilt
 
 brew install jq
 
@@ -10,11 +10,6 @@ RUSTFLAGS="-C instrument-coverage" cargo test --no-run --message-format=json | j
 
 `cat .test-bin-name`
 
-$(rustc --print sysroot)/lib/rustlib/aarch64-apple-darwin/bin/llvm-profdata merge -sparse default.profraw -o default.profdata
+grcov . --binary-path ./target/debug -s . -t html --branch --ignore-not-existing -o ./target/debug/coverage/
 
-$(rustc --print sysroot)/lib/rustlib/aarch64-apple-darwin/bin/llvm-cov show  \
-    -Xdemangler=rustfilt \
-    `cat .test-bin-name` \
-    -instr-profile=default.profdata \
-    -show-line-counts-or-regions \
-    -show-instantiations
+open target/debug/coverage/index.html
