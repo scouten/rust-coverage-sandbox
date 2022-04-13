@@ -1,6 +1,11 @@
 [package]
 name = "rust-coverage-sandbox"
 version = "0.1.0"
+rust-version = "1.60.0"
 edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
